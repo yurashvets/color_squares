@@ -11,6 +11,18 @@
   border: 0;
   border-radius: 10px;
   font-size: 30px;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.startButton {
+  height: 50px;
+  width: 100px;
+  margin: 0;
+  border: 0;
+  border-radius: 10px;
+  font-size: 16px; 
 }
 
 .direction-column {

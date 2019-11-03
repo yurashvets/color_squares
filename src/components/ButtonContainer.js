@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
 
-import { startGame } from "../actions/shuffleColors";
 import { updateScore } from "../actions/score";
 
 import Button from './Button';
 
-const ButtonContainer = ({colorSet, currentColor, startGame, updateScore}) => {
-  useEffect(() => {
-    startGame();
-  }, [startGame]);
+const ButtonContainer = ({colorSet, currentColor, isStarted, updateScore}) => {
   const handleClick = name => {
-    if (name === currentColor.name) {
+    if (isStarted && name === currentColor.name) {
       updateScore();
     }
   }
@@ -32,18 +27,14 @@ const ButtonContainer = ({colorSet, currentColor, startGame, updateScore}) => {
 }
 
 const mapStateToProps = ({
-  shuffleReducer: { colorSet, currentColor }
+  shuffleReducer: { colorSet, currentColor },
+  gameReducer: { isStarted },
 }) => ({
-  colorSet, currentColor
+  colorSet, currentColor, isStarted
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      startGame,
-      updateScore,
-    },
-    dispatch
-  );
+const mapDispatchToProps = {
+  updateScore,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ButtonContainer);

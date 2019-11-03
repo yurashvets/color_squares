@@ -7,10 +7,10 @@ import {
 import shuffle from 'lodash/shuffle';
 import random from 'lodash/random';
 import {
-  START_GAME,
   SHUFFLE_COLORS,
   shuffleColors,
 } from "../actions/shuffleColors";
+import { START_GAME } from '../actions/game';
 import { getColorList, getRounds } from '../selectors';
 import { DELAY, MAX_ROUDNS, COLORS, COLOR_NAMES } from '../constants';
 
