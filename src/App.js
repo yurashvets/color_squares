@@ -1,27 +1,25 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from './storeConfig'
-import logo from './logo.svg';
 import './App.css';
+
+import ButtonContainer from './components/ButtonContainer';
+import ColorToGuessContainer from './components/ColorToGuessContainer';
+import CountdownTimer from './components/CountdownTimer'
+import ScoreBar from './components/ScoreBar';
 
 function App() {
   return (
     <Provider store={configureStore()}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="app direction-column">
+        <div className="flex-center timer-score-container">
+          <CountdownTimer />
+          <ScoreBar />
+        </div>
+        <div className="flex-center direction-column">
+          <ColorToGuessContainer />
+          <ButtonContainer />
+        </div>
       </div>
     </Provider>
   );
