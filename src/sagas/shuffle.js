@@ -25,7 +25,9 @@ function* shuffleWorker() {
     if (rounds <= MAX_ROUDNS) {
       console.log('%c SHUFFLING', 'color: red;')
       const shuffledColors = shuffle(colors);
-      yield delay(DELAY);
+      if (rounds !== 1) {
+        yield delay(DELAY);
+      }
       yield put(shuffleColors({
             colorSet: shuffledColors,
             currentColor: {name: randomName, color: randomColor}
