@@ -1,23 +1,49 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-import Button from './Button';
+import { resetGame } from '../actions/game';
 
-const ColorToGuessContainer = ({currentColor}) => {
+import Button from './Button';
+import Modal from './Modal';
+
+const ColorToGuessContainer = ({currentColor, isFinished, score, resetGame}) => {
   return (
-    <div className="flex-center">
-      <Button
-        color={currentColor.color}
-        name={currentColor.name}
-      />
-    </div>
+    <React.Fragment>
+      <div className="flex-center">
+        <Button
+          color={currentColor.color}
+          name={currentColor.name}
+        />
+      </div>
+      {
+        isFinished && <Modal>
+          <div className="modal-background">
+            <div className="modal">
+              <p>Your score is {score}</p>
+              <Button
+                color="gray"
+                name="Finish"
+                className="startButton"
+                onClick={resetGame}
+              />
+            </div>
+          </div>
+        </Modal>
+      }
+    </React.Fragment>
   );
 }
 
 const mapStateToProps = ({
-  shuffleReducer: { currentColor }
+  shuffleReducer: { currentColor },
+  gameReducer: { isFinished },
+  scoreReducer: { score }
 }) => ({
-  currentColor
+  currentColor, isFinished, score
 });
 
-export default connect(mapStateToProps)(ColorToGuessContainer);
+const mapDispatchToProps = {
+  resetGame,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorToGuessContainer);
