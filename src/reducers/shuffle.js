@@ -1,25 +1,18 @@
 import * as ACTIONS from "../actions/shuffleColors";
+import {COLORS, COLOR_NAMES} from '../constants';
 
 const initialState = {
   rounds: 1,
   currentColor: {
-    name: "white",
-    color: "rgb(255, 255, 255)"
+    name: COLOR_NAMES[0],
+    color: COLORS[0]
   },
-  colorSet: [
-    {
-      name: "red",
-      color: "rgb(200, 0, 0)"
-    },
-    {
-      name: "yellow",
-      color: "rgb(255, 255, 0)"
-    },
-    {
-      name: "green",
-      color: "rgb(0, 128, 0)"
+  colorSet: COLOR_NAMES.map((item, i) => {
+    return {
+      name: item,
+      color: COLORS[i]
     }
-  ],
+  })
 };
 
 export default (state = initialState, action = {}) => {
