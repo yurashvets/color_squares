@@ -10,7 +10,7 @@ import Button from './Button';
 const HeaderContainer = ({startGame}) => <div className="flex-center timer-score-container">
   <CountdownTimer />
   <Button
-    color="rgb(159, 99, 214)"
+    color="#e0e0e0"
     name="Start Game"
     className="startButton"
     onClick={startGame}
