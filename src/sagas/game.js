@@ -16,10 +16,8 @@ import shuffleWorker from './shuffle'
 
 export default function* game() {
   while(yield take(START_GAME)) {
-    console.log('game worker start')
     const background = yield fork(shuffleWorker)
     yield take(UPDATE_SCORE)
-    console.log('game worker cancel')
     yield cancel(background)
   }
 }

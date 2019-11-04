@@ -13,20 +13,29 @@ import {
   scoreUpdated,
 } from "../actions/score";
 import {
+  finishGame
+} from "../actions/game";
+import {
   getColorList,
   getUserClicked,
+  getRounds
 } from '../selectors';
 import {
   DELAY,
   COLORS,
-  COLOR_NAMES
+  COLOR_NAMES,
+  MAX_ROUDNS
 } from '../constants';
 
 export default function* shuffleWorker(clicked) {
-  while (true) {
-    console.log('shuffleWorker clicked:', clicked)
+  let run = true;
+  while (run) {
     const isUserClicked = yield select(getUserClicked)
-    console.log('isUserClicked:', isUserClicked)
+    const rounds = yield select(getRounds)
+    if (rounds > MAX_ROUDNS + 1) {
+      run = false;
+      yield put(finishGame())
+    }
     if (!isUserClicked) yield delay(DELAY)
     const colors = yield select(getColorList)
     const randomName = COLOR_NAMES[random(0, 2)];
