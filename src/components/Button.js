@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Button = ({color, name, className, onClick}) => {
+const Button = ({color, name, className, onClick, disabled}) => {
   return (
     <button
       type="button"
       className={`button ${className}`}
       onClick={onClick}
-      style={{backgroundColor: `${color}`}}
+      disabled={disabled}
+      style={{backgroundColor: `${disabled ? '#aaa' : color}`}}
     >
       {name || ""}
     </button>

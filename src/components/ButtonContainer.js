@@ -6,11 +6,11 @@ import { updateScore } from "../actions/score";
 import Button from './Button';
 
 const ButtonContainer = ({colorSet, currentColor, isStarted, updateScore}) => {
-  const handleClick = name => {
-    if (isStarted && name === currentColor.name) {
-      updateScore();
-    }
-  }
+  // const handleClick = name => {
+  //   if (isStarted && name === currentColor.name) {
+  //     updateScore();
+  //   }
+  // }
   return (
     <div className='flex-center'>
       {
@@ -18,7 +18,8 @@ const ButtonContainer = ({colorSet, currentColor, isStarted, updateScore}) => {
           <Button
             key={item.name}
             color={item.color}
-            onClick={() => handleClick(item.name)}
+            disabled={!isStarted}
+            onClick={() => updateScore(item.name)}
           />
         )
       }
