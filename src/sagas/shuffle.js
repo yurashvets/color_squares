@@ -35,9 +35,7 @@ function* shuffleWorker() {
       randomName,
       randomColor,
     } = yield getValues();
-    console.log('ROUNDS:::: ', rounds)
     if (rounds <= MAX_ROUDNS) {
-      console.log('%c SHUFFLING', 'color: red;')
       const shuffledColors = shuffle(colors);
       if (rounds !== 1) {
         yield delay(DELAY);
