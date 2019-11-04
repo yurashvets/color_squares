@@ -15,11 +15,26 @@ import { START_GAME, finishGame } from '../actions/game';
 import { getColorList, getRounds } from '../selectors';
 import { DELAY, MAX_ROUDNS, COLORS, COLOR_NAMES } from '../constants';
 
+function* getValues() {
+  const colors = yield select(getColorList)
+  const rounds = yield select(getRounds)
+  const randomName = COLOR_NAMES[random(0,2)];
+  const randomColor = COLORS[random(0, 2)];
+  return {
+    colors,
+    rounds,
+    randomName,
+    randomColor,
+  }
+}
+
 function* shuffleWorker() {
-    const colors = yield select(getColorList)
-    const rounds = yield select(getRounds)
-    const randomName = COLOR_NAMES[random(0,2)];
-    const randomColor = COLORS[random(0, 2)];
+    const {
+      colors,
+      rounds,
+      randomName,
+      randomColor,
+    } = yield getValues();
     console.log('ROUNDS:::: ', rounds)
     if (rounds <= MAX_ROUDNS) {
       console.log('%c SHUFFLING', 'color: red;')
